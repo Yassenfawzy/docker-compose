@@ -6,15 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                git branch: 'master', url: 'https://github.com/Yasseenfawzy/docker-compose.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                sh 'echo "Building image..."'
             }
         }
 
@@ -26,7 +20,7 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'docker-compose -f mongo.yaml up -d'
+                sh 'docker compose -f mongo.yaml up -d'
             }
         }
     }
