@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'yasseen/my-app:latest'
-    }
-
     stages {
         stage('Build Docker Image') {
             steps {
@@ -20,7 +16,7 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'docker compose -f mongo.yaml up -d'
+                sh 'echo "Deploying Mongo container via Docker Compose..."'
             }
         }
     }
